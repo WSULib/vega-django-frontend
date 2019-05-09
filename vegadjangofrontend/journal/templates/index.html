@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<p>
+				<img src="{{venue.frontPageImage.asset.url}}"/>
+			</p>
+			<h2>{{venue.title}}</h2>
+			<p>{{venue.shortDescription}}</p>
+
+		</div>
+	</div>
+
+{% endblock %}
