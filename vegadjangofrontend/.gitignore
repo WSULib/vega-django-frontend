@@ -1,0 +1,6 @@
+
+# ignore localsettings
+vegadjangofrontend/localsettings.py
+
+# ignore SQLite databases
+*.sqlite3

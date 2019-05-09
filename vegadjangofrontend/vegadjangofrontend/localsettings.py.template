@@ -1,0 +1,4 @@
+from django.conf import settings
+
+# Version
+VEGA_DJANGO_FRONTEND_VERSION = 'v0.1'
