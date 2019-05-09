@@ -1,0 +1,42 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+	<head>
+
+		<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    	<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}">
+
+		<!-- jQuery -->
+		<script type="text/javascript" charset="utf8" src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+
+		<!-- Popper -->
+		<script type="text/javascript" charset="utf8" src="{% static 'popper.min.js' %}"></script>
+
+		<!-- Bootstrap JS -->
+		<script src="{% static 'bootstrap-4.3.1-dist/js/bootstrap.min.js' %}"></script>
+
+    	<!-- Combine CSS -->
+    	<link rel="stylesheet" type="text/css" href="{% static 'local.css' %}">
+
+    	<title>Vega Django Front-end</title>
+
+	</head>
+
+	<body>
+
+		<main role="main" class="container">
+
+			{% block content %}
+			{% endblock %}
+
+		</main>
+
+	</body>
+
+</html>

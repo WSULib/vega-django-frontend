@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 
 def helloworld(request):
-    return HttpResponse("Hello, world.  Here comes Vega.")
+
+	return render(request, 'helloworld.html', {})
