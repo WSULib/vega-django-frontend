@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +26,8 @@ SECRET_KEY = 'whxcdobhuv1r$*cy0=$r&)+3!iz)z1qhvxl0$i6&dok_&gd+kz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allowed Hosts
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -167,3 +169,12 @@ LOGGING = {
         },
     },
 }
+
+
+#########################
+# Import localsettings.py
+#########################
+try:
+    from .localsettings import *
+except ImportError:
+    pass

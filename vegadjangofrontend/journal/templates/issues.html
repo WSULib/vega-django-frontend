@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load journal_template_filters %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<h1>Issues</h1>
+
+			{% for issue in issues %}
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<h4>
+							<a href="{% url 'issue' issue_id=issue|get:"_id" %}"><img style="width:100px;" src="{{issue.coverImage.asset.url}}" /> Issue {{issue.volume}}.{{issue.number}} - {{issue.title}}</a>
+						</h4>
+
+					</div>
+				</div>
+
+			{% endfor %}
+
+		</div>
+	</div>
+
+{% endblock %}
