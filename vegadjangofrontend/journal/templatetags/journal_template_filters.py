@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 
 @register.filter(name='get')
 def get(d, k):
-    '''
+    """
     Provide dictionary like filter
-    '''
+    """
 
     return d.get(k, None)
