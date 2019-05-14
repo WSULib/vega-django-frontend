@@ -2,3 +2,8 @@ from django.conf import settings
 
 # Version
 VEGA_DJANGO_FRONTEND_VERSION = 'v0.1'
+
+# Saga Config
+SAGA_HOST = '127.0.0.1'
+SAGA_PORT = 4000
+SAGA_DATASET = 'your_dataset_here--pub'

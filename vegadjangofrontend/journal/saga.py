@@ -3,63 +3,54 @@
 import requests
 import json
 
+
 class SagaClient(object):
+    '''
+    Client to connect with Saga backend
+    '''
 
-	'''
-	Client to connect with Saga backend
-	'''
+    def __init__(self, host=None, port=None, dataset=None):
+        '''
+        Args:
+            host (str): host
+            port (int): port number
+            dataset (str): dataset, likely ending with `--pub`
+        '''
 
+        self.host = host
+        self.port = port
+        self.dataset = dataset
 
-	def __init__(self, host=None, port=None, dataset=None):
+    def identify(self):
+        '''
+        Saga identification
+        '''
 
-		'''
-		Args:
-			host (str): host
-			port (int): port number
-			dataset (str): dataset, likely ending with `--pub`
-		'''
+        return requests.get('http://%s:%s' % (self.host, self.port)).json()
 
-		self.host = host
-		self.port = port
-		self.dataset = dataset
+    def groq_query(self, query):
+        '''
+        Issue query as POST request
 
+        Args:
+            query (str): GROQ query string
+                - handles multi-line strings
+        '''
 
-	def identify(self):
+        # prepare query
+        query_json = json.dumps({
+            'query': query
+        })
+        print(query_json)
 
-		'''
-		Saga identification
-		'''
+        # issue request
+        r = requests.post(
+            'http://%s:%s/v1/data/query/%s' % (self.host, self.port, self.dataset),
+            data=query_json,
+            headers={
+                'Content-Type': 'application/json'
+            }
+        )
 
-		return requests.get('http://%s:%s' % (self.host, self.port)).json()
-
-
-	def groq_query(self, query):
-
-		'''
-		Issue query as POST request
-
-		Args:
-			query (str): GROQ query string
-				- handles multi-line strings
-		'''
-
-		# prepare query
-		query_json = json.dumps({
-				'query':query
-			})
-		print(query_json)
-
-		# issue request
-		r = requests.post(
-				'http://%s:%s/v1/data/query/%s' % (self.host, self.port, self.dataset),
-				data = query_json,
-				headers = {
-					'Content-Type':'application/json'
-				}
-			)
-
-		# return
-		return r.json()
-
-
-
+        # return
+        return r.json()

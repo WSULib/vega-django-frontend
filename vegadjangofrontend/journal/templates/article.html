@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load journal_template_filters %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="issue-page__image-container">
+				<img class="issue-page__image" src="{{article.mainImage.asset.url}}">
+			</div>
+
+			<h2><em>{{article.title}}</em></h2>
+
+			<p>Authors:
+				{% for author in article.authors %}
+					<br>{{author.name}}
+				{% endfor %}
+			</p>
+
+			<hr>
+
+			<!-- abstract -->
+			<div class="row">
+				<div id="article_body" class="col-md-12">
+					<h4>Abstract</h4>
+					{% for chunk in article.abstract %}
+						{% for child in chunk.children %}
+							<p>{{child.text}}</p>
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+
+			<hr>
+
+			<!-- body -->
+			<div class="row">
+				<div id="article_body" class="col-md-12">
+					{% for block in article.content %}
+						{% for child in block.children %}
+							<p>{{child.text}}</p>
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

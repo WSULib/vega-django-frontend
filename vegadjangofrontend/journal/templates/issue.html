@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load journal_template_filters %}
 
 {% block content %}
 
@@ -12,9 +13,26 @@
 			{% for section in issue.content %}
 
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12" style="padding-left:45px;">
 
-						<h3>{{section.title}}
+						<h3>{{section.title}}</h3>
+
+						{% for article in section.articles_ref %}
+
+							<div class="row" style="padding-left:45px;">
+								<div class="col-md-12">
+									<p>
+										<a href="{% url 'article' issue_id=issue|get:"_id" article_id=article|get:"_id" %}">
+											<img style="width:100px;" src="{{article.mainImage.asset.url}}"/> - {{article.title}}<br>
+											{% for author in article.authors %}
+												<em>{{author.name}}</em><br>
+											{% endfor %}
+										</a>
+									</p>
+								</div>
+							</div>
+
+						{% endfor %}
 
 					</div>
 				</div>
