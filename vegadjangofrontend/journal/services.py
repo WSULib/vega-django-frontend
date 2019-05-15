@@ -49,8 +49,21 @@ class Blocks2HTML(object):
             marks = child.get('marks',[None])
             if len(marks) > 0:
                 style = marks[0]
+
+                # handle known type
                 if style in ['strong','em','code']:
                     text = '<%s>%s</%s>' % (style,text,style)
+
+                # elif string, assume key
+                elif type(style) == str:
+
+                    # retrieve key
+                    for markDef in block.get('markDefs',[]):
+                        if style == markDef.get('_key',''):
+
+                            # handle hrefs
+                            if 'href' in markDef.keys():
+                                text = '<a href="%s">%s</a>' % (markDef.get('href'), text)
 
             # append to html
             inner_html.append(text)
