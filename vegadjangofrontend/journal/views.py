@@ -6,6 +6,9 @@ import logging
 # import Saga Client
 from journal.saga import SagaClient
 
+# import services
+from journal.services import Blocks2HTML
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -111,8 +114,20 @@ def article(request, issue_id, article_id):
     }""" % {'article_id': article_id}
     article = saga_handle.groq_query(article_qs).get('result', [])[0]
 
+    # render abstract
+    b2h = Blocks2HTML(article['abstract'])
+    abstract = b2h.render()
+
+    # render body
+    b2h = Blocks2HTML(article['content'])
+    body = b2h.render()
+
     # return
     return render(request, 'article.html', {
         'article': article,
+        'rendered':{
+            'abstract':abstract,
+            'body':body
+        },
         'page_title': 'Article'
     })

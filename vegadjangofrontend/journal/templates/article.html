@@ -22,12 +22,10 @@
 
 			<!-- abstract -->
 			<div class="row">
-				<div id="article_body" class="col-md-12">
+				<div id="abstract_body" class="col-md-12">
 					<h4>Abstract</h4>
-					{% for chunk in article.abstract %}
-						{% for child in chunk.children %}
-							<p>{{child.text}}</p>
-						{% endfor %}
+					{% for block in rendered.abstract %}
+						{{block|safe}}
 					{% endfor %}
 				</div>
 			</div>
@@ -37,10 +35,8 @@
 			<!-- body -->
 			<div class="row">
 				<div id="article_body" class="col-md-12">
-					{% for block in article.content %}
-						{% for child in block.children %}
-							<p>{{child.text}}</p>
-						{% endfor %}
+					{% for block in rendered.body %}
+						{{block|safe}}
 					{% endfor %}
 				</div>
 			</div>
